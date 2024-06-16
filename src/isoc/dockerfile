@@ -1,0 +1,22 @@
+# Exemplu Dockerfile pentru microserviciu 1
+
+# Folosim o imagine de bază cu Node.js
+FROM node:14-alpine
+
+# Setăm directorul de lucru în container
+WORKDIR /app
+
+# Copiem pachetul de dependențe și fișierele de configurare
+COPY package*.json ./
+
+# Instalăm dependențele
+RUN npm install --production
+
+# Copiem codul sursă al aplicației
+COPY . .
+
+# Expunem portul necesar de către aplicație
+EXPOSE 3000
+
+# Definim comanda de pornire a aplicației
+CMD ["npm", "run", "start:prod"]
